@@ -1,6 +1,6 @@
 {
 	"name": "recruit-app",
-	"homepage": "https://J7477.github.io/recruit-app",
+	"homepage": ".",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
