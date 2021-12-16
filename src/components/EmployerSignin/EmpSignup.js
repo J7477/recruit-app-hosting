@@ -48,7 +48,7 @@ const EmpSignup = (props) => {
 
     if (json.success) {
       //save auth token and redirect
-      localStorage.setItem('empAuthCoin', json.empAuthCoinToken)
+      localStorage.setItem('empAuthCoin', json.empAuthCoin)
       navigate('/')
     } else {
       alert("Incorrect credentials")
