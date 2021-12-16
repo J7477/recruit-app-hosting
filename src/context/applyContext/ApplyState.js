@@ -3,7 +3,7 @@ import ApplyContext from './ApplyContext'
 
 
 const ApplyState = (props) => {
-  const host = "http://localhost:5000"
+  const host = "https://projectsemapp.herokuapp.com"
 
   const appliedInitial = []
 

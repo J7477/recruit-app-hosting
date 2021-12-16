@@ -1,93 +1,93 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import IdContext from './IdContext'
 
 
-const IdState=(props)=>{
+const IdState = (props) => {
 
-  const host="http://localhost:5000"
+  const host = "https://projectsemapp.herokuapp.com"
 
-  const detailInitial=[]
+  const detailInitial = []
 
-    const [details, setDetails] = useState(detailInitial)
+  const [details, setDetails] = useState(detailInitial)
 
-    // get all details(marks)
-    const getDetails = async()=>{
-      //API call
-      const response = await fetch(`${host}/api/studentDetail/fetchalldetails`, {
-        method: 'GET',
-    
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'auth-token':localStorage.getItem('token')
-        },
-      });
-      const json= await response.json(); 
-      setDetails(json)
-    
-    }
+  // get all details(marks)
+  const getDetails = async () => {
+    //API call
+    const response = await fetch(`${host}/api/studentDetail/fetchalldetails`, {
+      method: 'GET',
 
-    // Add details
-    const addDetail = async(ten, twelve, graduation, postgraduation)=>{
-      //API call
-      const response = await fetch(`${host}/api/studentDetail/adddetail`, {
-        method: 'POST',
-    
-        headers: {
-          'Content-Type': 'application/json',
-          'auth-token':localStorage.getItem('token')
-        },
-        body: JSON.stringify({ten, twelve, graduation, postgraduation}) 
-      });
-      const detail= await response.json();
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'auth-token': localStorage.getItem('token')
+      },
+    });
+    const json = await response.json();
+    setDetails(json)
 
-      setDetails(details.concat(detail))//creating an array, concat returns an array, push updates an array, jobs from useState, job passed from function
+  }
 
-    }
+  // Add details
+  const addDetail = async (ten, twelve, graduation, postgraduation) => {
+    //API call
+    const response = await fetch(`${host}/api/studentDetail/adddetail`, {
+      method: 'POST',
 
-  
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': localStorage.getItem('token')
+      },
+      body: JSON.stringify({ ten, twelve, graduation, postgraduation })
+    });
+    const detail = await response.json();
 
-    // Edit details
-    const editDetail = async(id, ten, twelve, graduation, postgraduation)=>{
+    setDetails(details.concat(detail))//creating an array, concat returns an array, push updates an array, jobs from useState, job passed from function
 
-      //API call
-      const response = await fetch(`${host}/api/studentDetail/updatedetail/${id}`, {
-        method: 'PUT',
-    
-        headers: {
-          'Content-Type': 'application/json',
-          'auth-token':localStorage.getItem('token')
-        },
-        body: JSON.stringify({ten, twelve, graduation, postgraduation}) 
-      });
-      const json= await response.json(); 
-      console.log(json)
-    
+  }
 
-      //logic for editing
-      let newDetails= JSON.parse(JSON.stringify(details))
 
-      for (let index = 0; index < newDetails.length; index++) {
-        const element = newDetails[index];
 
-        if(element._id===id){
-          newDetails[index].ten=ten;
-          newDetails[index].twelve=twelve;
-          newDetails[index].graduation=graduation;
-          newDetails[index].postgraduation=postgraduation;
-          break;
-        }
+  // Edit details
+  const editDetail = async (id, ten, twelve, graduation, postgraduation) => {
+
+    //API call
+    const response = await fetch(`${host}/api/studentDetail/updatedetail/${id}`, {
+      method: 'PUT',
+
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': localStorage.getItem('token')
+      },
+      body: JSON.stringify({ ten, twelve, graduation, postgraduation })
+    });
+    const json = await response.json();
+    console.log(json)
+
+
+    //logic for editing
+    let newDetails = JSON.parse(JSON.stringify(details))
+
+    for (let index = 0; index < newDetails.length; index++) {
+      const element = newDetails[index];
+
+      if (element._id === id) {
+        newDetails[index].ten = ten;
+        newDetails[index].twelve = twelve;
+        newDetails[index].graduation = graduation;
+        newDetails[index].postgraduation = postgraduation;
+        break;
       }
-      setDetails(newDetails)
     }
+    setDetails(newDetails)
+  }
 
 
-      return(
-        // eslint-disable-next-line
-        <IdContext.Provider value={{details, addDetail, editDetail, getDetails}}>
-            {props.children}
-        </IdContext.Provider>
-    )
+  return (
+    // eslint-disable-next-line
+    <IdContext.Provider value={{ details, addDetail, editDetail, getDetails }}>
+      {props.children}
+    </IdContext.Provider>
+  )
 }
 
 export default IdState;

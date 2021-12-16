@@ -22,7 +22,7 @@ const Cards = () => {
     async function fetchData() {
       try {
         //API call   
-        const response = await fetch(`http://localhost:5000/api/jobListing/post/${id}`, {
+        const response = await fetch(`https://projectsemapp.herokuapp.com/api/jobListing/post/${id}`, {
           method: 'GET',
 
           headers: {

@@ -27,7 +27,7 @@ const EmpSignin = (props) => {
     event.preventDefault();
 
     //API call
-    const response = await fetch(`http://localhost:5000/api/employerAuth/emplogin`, {
+    const response = await fetch(`https://projectsemapp.herokuapp.com/api/employerAuth/emplogin`, {
       method: 'POST',
 
       headers: {
