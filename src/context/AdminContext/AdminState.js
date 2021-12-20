@@ -39,8 +39,8 @@ const AdminState = (props) => {
                 'Content-Type': 'application/json',
             },
         });
-        const json = await response.json();
-
+        // const json = await response.json();
+        // console.log(json)
 
         const newJobs = data.filter((job) => { return job._id !== id })
         setData(newJobs)
@@ -67,8 +67,8 @@ const AdminState = (props) => {
             method: 'DELETE',
 
         });
-        const json = await response.json();
-
+        // const json = await response.json();
+        // console.log(json)
 
         const newJobs = data.filter((job) => { return job._id !== id })
         setData(newJobs)
@@ -96,8 +96,8 @@ const AdminState = (props) => {
             method: 'DELETE',
 
         });
-        const json = await response.json();
-
+        // const json = await response.json();
+        // console.log(json)
 
         const newUsers = data.filter((job) => { return job._id !== id })
         setData(newUsers)
