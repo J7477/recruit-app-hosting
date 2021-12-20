@@ -28,7 +28,7 @@ const Nav = () => {
     navigate("/")
   }
 
-
+  console.log(auth.username)
 
   return (
     <>
