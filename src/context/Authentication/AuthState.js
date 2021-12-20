@@ -32,7 +32,7 @@ const AuthState = (props) => {
                 username: json.username,
                 state: true
             })
-            console.log(json.success)
+            console.log(json)
             navigate('/profile')
         }
     }
