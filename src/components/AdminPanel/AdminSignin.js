@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,22 +9,43 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 
 const AdminSignin = () => {
 
-    let navigate = useNavigate()
 
+    const [credentials, setCredentials] = useState({ username: "", password: "" })
 
-    const handleSubmit = () => {
-        Axios.post('localhost:5000/api/AdminPanel/adminlogin').then((response) => {
-            if (response) {
-                navigate('/adminpage')
-            }
-        })
+    let navigate = useNavigate();
+
+    const onChange = (e) => {
+        setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        //API call
+        const response = await fetch(`https://projectsemapp.herokuapp.com/api/AdminPanel/adminlogin`, {
+            method: 'POST',
+
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username: credentials.username, password: credentials.password })
+        });
+
+        const json = await response.json();
+
+        console.log(json)
+
+        if (json) {
+            navigate('/adminpage')
+        } else {
+            alert("Incorrect credentials")
+        }
+    };
 
     return (
 
@@ -44,31 +65,32 @@ const AdminSignin = () => {
                 <Typography component="h1" variant="h5">
                     Admin Sign in
                 </Typography>
-                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                <form onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <TextField
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
+                        value={credentials.username}
+                        id="username"
+                        label="Username "
+                        name="username"
+                        autoComplete="username"
                         autoFocus
+                        onChange={onChange}
                     />
                     <TextField
                         margin="normal"
                         required
                         fullWidth
+                        value={credentials.password}
                         name="password"
                         label="Password"
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={onChange}
                     />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
+
                     <Button
                         type="submit"
                         fullWidth
@@ -78,7 +100,7 @@ const AdminSignin = () => {
                         Sign In
                     </Button>
 
-                </Box>
+                </form>
             </Box>
 
         </Container>
