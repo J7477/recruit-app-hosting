@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,10 +10,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom'
+import AuthContext from '../../context/Authentication/AuthContext';
 
 
 const EmpSignin = (props) => {
 
+
+  const context = useContext(AuthContext)
+  const { employerAuth } = context
 
   const [credentials, setCredentials] = useState({ companyemail: "", password: "" })
 
@@ -25,30 +29,8 @@ const EmpSignin = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    //API call
-    const response = await fetch(`https://projectsemapp.herokuapp.com/api/employerAuth/emplogin`, {
-      method: 'POST',
-
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ companyemail: credentials.companyemail, password: credentials.password })
-    });
-
-    const json = await response.json();
-
-    console.log(json)
-
-    if (json.success) {
-      //save auth token and redirect
-      localStorage.setItem('empAuthCoin', json.empAuthCoin)
-      // localStorage.removeItem('token')
-      navigate('/empProfile')
-    } else {
-      alert("Incorrect credentials")
-    }
-  };
+    employerAuth(credentials.companyemail, credentials.password)
+  }
 
   return (
     <Container component="main" maxWidth="xs">

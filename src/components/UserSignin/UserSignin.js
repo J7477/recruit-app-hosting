@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,47 +9,29 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useNavigate } from 'react-router-dom'
+import AuthContext from '../../context/Authentication/AuthContext';
 
 
 const UserSignIn = (props) => {
 
 
+  const userContext = useContext(AuthContext)
+
+  const { userAuth, auth } = userContext;
+
   const [credentials, setCredentials] = useState({ username: "", password: "" })
 
-  let navigate = useNavigate();
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    userAuth(credentials.username, credentials.password)
+  }
 
-    //API call
-    const response = await fetch(`https://projectsemapp.herokuapp.com/api/studentAuth/login`, {
-      method: 'POST',
 
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username: credentials.username, password: credentials.password })
-    });
-
-    const json = await response.json();
-
-    // console.log(json)
-
-    if (json.success) {
-      //save auth token and redirect
-      localStorage.setItem('token', json.stuAuthToken)
-      // localStorage.removeItem('empAuthCoin')
-      // localStorage.removeItem('emptoken')
-      navigate('/profile')
-    } else {
-      alert("Incorrect credentials")
-    }
-  };
 
   return (
     <Container component="main" maxWidth="xs">

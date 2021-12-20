@@ -30,6 +30,8 @@ import AdminState from './context/AdminContext/AdminState';
 import AdminJobs from './components/AdminPanel/AdminJobs';
 import AdminUser from './components/AdminPanel/AdminUser';
 import AdminSignin from './components/AdminPanel/AdminSignin';
+import AuthState from './context/Authentication/AuthState';
+
 
 // const theme = createTheme({
 //   palette: {
@@ -52,29 +54,31 @@ function App(props) {
             <ApplyState>
               <UserDetailState>
                 <AdminState>
-                  <Routes>
+                  <AuthState>
+                    <Routes>
 
-                    <Route exact path='/' element={<Home />} />
-                    <Route exact path='/userDashboard' element={<UserDashboard />} />
-                    <Route exact path='/fillEducationForm' element={<EducationForm />} />
-                    <Route exact path='/jobHistory' element={<JobHistory />} />
-                    <Route exact path='/empProfile' element={<Profile />} />
-                    <Route exact path='/employerDashboard' element={<EmployerDashboard />} />
-                    <Route exact path='/empSignin' element={<EmpSignin />} />
-                    <Route exact path='/empSignup' element={<EmpSignup />} />
-                    <Route exact path='/postVacancy' element={<PostVacancy />} />
-                    <Route exact path='/profile' element={<ShowProfile />} />
-                    <Route exact path='/totalVacancy' element={<TotalVacancy />} />
-                    <Route exact path='/userSignin' element={<UserSignin />} />
-                    <Route exact path='/userSignup' element={<UserSignup />} />
-                    <Route exact path='/more' element={<More />} />
-                    <Route exact path='/post/:id' element={<Cards />} />
-                    <Route exact path='/admin' element={<AdminSignin />} />
-                    <Route exact path='/adminpage' element={<AdminPage />} />
-                    <Route exact path='/adminjobs' element={<AdminJobs />} />
-                    <Route exact path='/adminusers' element={<AdminUser />} />
+                      <Route exact path='/' element={<Home />} />
+                      <Route exact path='/userDashboard' element={<UserDashboard />} />
+                      <Route exact path='/fillEducationForm' element={<EducationForm />} />
+                      <Route exact path='/jobHistory' element={<JobHistory />} />
+                      <Route exact path='/empProfile' element={<Profile />} />
+                      <Route exact path='/employerDashboard' element={<EmployerDashboard />} />
+                      <Route exact path='/empSignin' element={<EmpSignin />} />
+                      <Route exact path='/empSignup' element={<EmpSignup />} />
+                      <Route exact path='/postVacancy' element={<PostVacancy />} />
+                      <Route exact path='/profile' element={<ShowProfile />} />
+                      <Route exact path='/totalVacancy' element={<TotalVacancy />} />
+                      <Route exact path='/userSignin' element={<UserSignin />} />
+                      <Route exact path='/userSignup' element={<UserSignup />} />
+                      <Route exact path='/more' element={<More />} />
+                      <Route exact path='/post/:id' element={<Cards />} />
+                      <Route exact path='/admin' element={<AdminSignin />} />
+                      <Route exact path='/adminpage' element={<AdminPage />} />
+                      <Route exact path='/adminjobs' element={<AdminJobs />} />
+                      <Route exact path='/adminusers' element={<AdminUser />} />
 
-                  </Routes>
+                    </Routes>
+                  </AuthState>
                 </AdminState>
               </UserDetailState>
             </ApplyState>
