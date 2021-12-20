@@ -73,7 +73,7 @@ const Nav = () => {
 
           {localStorage.getItem('token') &&
             <form className="d-flex">
-              <p style={{ margin: 5 }}>{auth.username}</p>
+              {auth.username}
               <Button color="inherit" component={Link} to={"/profile"}>User Dashboard</Button>
               <Button color="inherit" onClick={handleLogout}>Logout</Button>
             </form>
