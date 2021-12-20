@@ -29,6 +29,7 @@ import AdminPage from './components/AdminPanel/AdminPage';
 import AdminState from './context/AdminContext/AdminState';
 import AdminJobs from './components/AdminPanel/AdminJobs';
 import AdminUser from './components/AdminPanel/AdminUser';
+import AdminSignin from './components/AdminPanel/AdminSignin';
 
 // const theme = createTheme({
 //   palette: {
@@ -68,7 +69,8 @@ function App(props) {
                     <Route exact path='/userSignup' element={<UserSignup />} />
                     <Route exact path='/more' element={<More />} />
                     <Route exact path='/post/:id' element={<Cards />} />
-                    <Route exact path='/admin' element={<AdminPage />} />
+                    <Route exact path='/admin' element={<AdminSignin />} />
+                    <Route exact path='/adminpage' element={<AdminPage />} />
                     <Route exact path='/adminjobs' element={<AdminJobs />} />
                     <Route exact path='/adminusers' element={<AdminUser />} />
 
