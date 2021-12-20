@@ -17,7 +17,7 @@ const UserSignIn = (props) => {
 
   const userContext = useContext(AuthContext)
 
-  const { userAuth, auth } = userContext;
+  const { userAuth } = userContext;
 
   const [credentials, setCredentials] = useState({ username: "", password: "" })
 

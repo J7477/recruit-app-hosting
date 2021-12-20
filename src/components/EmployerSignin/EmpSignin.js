@@ -9,7 +9,6 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useNavigate } from 'react-router-dom'
 import AuthContext from '../../context/Authentication/AuthContext';
 
 
@@ -21,7 +20,7 @@ const EmpSignin = (props) => {
 
   const [credentials, setCredentials] = useState({ companyemail: "", password: "" })
 
-  let navigate = useNavigate();
+
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
