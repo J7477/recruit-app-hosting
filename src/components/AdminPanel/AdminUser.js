@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -53,7 +53,7 @@ const AdminUser = (props) => {
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
-    const [employer, setEmployer] = useState('')
+
 
     const context = useContext(AdminContext)
     const { data, getUsers } = context;
