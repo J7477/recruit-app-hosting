@@ -57,6 +57,9 @@ const Nav = () => {
         })()
       } */}
 
+          <Button color="inherit" component={Link} to={"/admin"}>Admin</Button>
+
+
           {!localStorage.getItem('token') &&
             !localStorage.getItem('empAuthCoin') &&
             <form className="d-flex">
