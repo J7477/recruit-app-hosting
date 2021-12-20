@@ -8,15 +8,15 @@ import { useNavigate } from 'react-router';
 const Jobs = () => {
 
 
-  let navigate=useNavigate();
+  let navigate = useNavigate();
   const context = useContext(jobContext)
   // eslint-disable-next-line
   const { jobs, getJobs, editJob } = context;
-// console.log(jobs)
+
   useEffect(() => {
-    if(localStorage.getItem('empAuthCoin')){
+    if (localStorage.getItem('empAuthCoin')) {
       getJobs()
-    }else{
+    } else {
       navigate('/empSignin')
     }
     //eslint-disable-next-line
@@ -25,21 +25,21 @@ const Jobs = () => {
   const reference = useRef(null)
   const refClose = useRef(null)
 
-  const [job, setJob] = useState({id:"", editTitle:'', editDescription:'', editSalary:0, editOpenings:0})
+  const [job, setJob] = useState({ id: "", editTitle: '', editDescription: '', editSalary: 0, editOpenings: 0 })
 
 
   const updateJob = (currentJob) => {
     reference.current.click();
-    setJob({id:currentJob._id, editTitle:currentJob.title, editDescription:currentJob.description, editSalary:currentJob.salary, editOpenings:currentJob.opening})
+    setJob({ id: currentJob._id, editTitle: currentJob.title, editDescription: currentJob.description, editSalary: currentJob.salary, editOpenings: currentJob.opening })
   }
 
-  const handleOnClick=(e)=>{
+  const handleOnClick = (e) => {
     editJob(job.id, job.editTitle, job.editDescription, job.editSalary, job.editOpenings)
     refClose.current.click();
   }
-  
-  const onChange=(e)=>{
-    setJob({...job, [e.target.name]:e.target.value})
+
+  const onChange = (e) => {
+    setJob({ ...job, [e.target.name]: e.target.value })
   }
 
   return (
@@ -108,12 +108,12 @@ const Jobs = () => {
                   onChange={onChange}
                   value={job.editOpenings}
                 />
-                
+
 
               </form>
             </div>
             <div className="modal-footer">
-              <button ref={refClose}type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button ref={refClose} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" className="btn btn-primary" onClick={handleOnClick}>Update Job</button>
             </div>
           </div>
@@ -121,7 +121,7 @@ const Jobs = () => {
       </div>
 
 
-      {jobs.length===0 && 'No jobs to display'}
+      {jobs.length === 0 && 'No jobs to display'}
       {jobs.map((job) => {
         return (
           <JobsCard key={job._id} updateJob={updateJob} job={job} />

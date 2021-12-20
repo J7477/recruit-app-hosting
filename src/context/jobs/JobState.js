@@ -57,7 +57,7 @@ const JobState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json)
+
 
     const newJobs = jobs.filter((job) => { return job._id !== id })
     setJobs(newJobs)
@@ -77,7 +77,7 @@ const JobState = (props) => {
       body: JSON.stringify({ title, description, salary, opening })
     });
     const json = await response.json();
-    console.log(json)
+
 
 
     //logic for editing

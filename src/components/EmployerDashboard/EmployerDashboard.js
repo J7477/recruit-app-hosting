@@ -13,29 +13,29 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import {  Button, CardActionArea  } from '@mui/material';
+import { Button, CardActionArea } from '@mui/material';
 import { Grid } from '@mui/material';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import Background from '../../images/background.jpg'
 
 const drawerWidth = 240;
 
-const EmployerDashboard=(props)=> {
-  console.log(props)
+const EmployerDashboard = (props) => {
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  
+
   // var sectionStyle = {
   //   width: "100%",
   //   height: "400px",
   //   backgroundImage: `url(${Background})`
   // };
-  
-  
+
+
 
 
   const drawer = (
@@ -48,25 +48,25 @@ const EmployerDashboard=(props)=> {
             <ListItemText primary={text} />
           </ListItem>
         ))} */}
-       <ListItem>
-              <Button color="inherit" component={Link} to={"/employerDashboard"}>Dashboard</Button>
-          </ListItem>
-       <ListItem>
-              <Button color="inherit" component={Link} to={"/postVacancy"}>Post Vacancy</Button>
-          </ListItem>
-       <ListItem>
-              <Button color="inherit" component={Link} to={"/empProfile"}>Profile</Button>
-          </ListItem>
+        <ListItem>
+          <Button color="inherit" component={Link} to={"/employerDashboard"}>Dashboard</Button>
+        </ListItem>
+        <ListItem>
+          <Button color="inherit" component={Link} to={"/postVacancy"}>Post Vacancy</Button>
+        </ListItem>
+        <ListItem>
+          <Button color="inherit" component={Link} to={"/empProfile"}>Profile</Button>
+        </ListItem>
       </List>
       <Divider />
       <List >
-            <ListItem>
-              <Button color="inherit" component={Link} to={"/totalVacancy"}>Total Vacancies</Button>
-          </ListItem>
-          <ListItem>
-              <Button color="inherit" component={Link} to={"/"}>Back to Home Page</Button>
-          </ListItem>
-          {/* <ListItem button  >
+        <ListItem>
+          <Button color="inherit" component={Link} to={"/totalVacancy"}>Total Vacancies</Button>
+        </ListItem>
+        <ListItem>
+          <Button color="inherit" component={Link} to={"/"}>Back to Home Page</Button>
+        </ListItem>
+        {/* <ListItem button  >
               <Button color="inherit" component={Link} to={"/logout"}>Logout</Button>
           </ListItem> */}
       </List>
@@ -83,7 +83,7 @@ const EmployerDashboard=(props)=> {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor:'#B3D9FF'
+          backgroundColor: '#B3D9FF'
         }}
       >
         <Toolbar>
@@ -103,7 +103,7 @@ const EmployerDashboard=(props)=> {
       </AppBar>
       <Box
         component="nav"
-            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }  }}
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -117,9 +117,9 @@ const EmployerDashboard=(props)=> {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth,backgroundColor:'#00264D'}
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, backgroundColor: '#00264D' }
           }}
-          
+
         >
           {drawer}
         </Drawer>
@@ -129,7 +129,7 @@ const EmployerDashboard=(props)=> {
           variant="permanent"
           sx={{
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, backgroundColor:'#00264D' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, backgroundColor: '#00264D' },
           }}
           open
         >
@@ -151,86 +151,86 @@ const EmployerDashboard=(props)=> {
             <Grid item>
 
 
-            <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
-                
-                <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    Title
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    text
-                </Typography>
-                </CardContent>
-            </CardActionArea>
-            
-            </Card>
+              <Card sx={{ maxWidth: 345 }}>
+                <CardActionArea>
 
-
-                    </Grid>
-                </Grid>
-
-                <Grid item xs={8}>
-                    <Grid item>
-                    <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
-                
-                <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    Title
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    text
-                </Typography>
-                </CardContent>
-            </CardActionArea>
-            
-            </Card>
-                    </Grid>
-                </Grid>
-                </Grid>
-
-                <Grid container spacing={2} columns={16}>
-                <Grid item xs={8}>
-                <Grid item>
-                <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
-                
-                <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    Title
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    text
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      Title
                     </Typography>
-                </CardContent>
-            </CardActionArea>
-            
-            </Card>
-                </Grid>
-                </Grid>
+                    <Typography variant="body2" color="text.secondary">
+                      text
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+
+              </Card>
 
 
-                <Grid item xs={8}>
-                <Grid item> <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
-                
-                <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    Title
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    text
-                </Typography>
-                </CardContent>
-            </CardActionArea>
-            
-            </Card>
-
-            
             </Grid>
-                </Grid>
-                </Grid>
+          </Grid>
+
+          <Grid item xs={8}>
+            <Grid item>
+              <Card sx={{ maxWidth: 345 }}>
+                <CardActionArea>
+
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      Title
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      text
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+
+              </Card>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={2} columns={16}>
+          <Grid item xs={8}>
+            <Grid item>
+              <Card sx={{ maxWidth: 345 }}>
+                <CardActionArea>
+
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      Title
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      text
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+
+              </Card>
+            </Grid>
+          </Grid>
+
+
+          <Grid item xs={8}>
+            <Grid item> <Card sx={{ maxWidth: 345 }}>
+              <CardActionArea>
+
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Title
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    text
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+
+            </Card>
+
+
+            </Grid>
+          </Grid>
+        </Grid>
       </Box>
     </Box>
 

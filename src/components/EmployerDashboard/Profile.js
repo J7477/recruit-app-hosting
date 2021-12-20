@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 const drawerWidth = 240;
 
 const Profile = (props) => {
-  console.log(props)
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 

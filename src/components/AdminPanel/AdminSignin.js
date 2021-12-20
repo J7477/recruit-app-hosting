@@ -36,7 +36,7 @@ const AdminSignin = () => {
 
         const json = await response.json();
 
-        console.log(json)
+
 
         if (json) {
             navigate('/adminpage')

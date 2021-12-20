@@ -40,7 +40,7 @@ const AdminState = (props) => {
             },
         });
         const json = await response.json();
-        console.log(json)
+
 
         const newJobs = data.filter((job) => { return job._id !== id })
         setData(newJobs)
@@ -68,7 +68,7 @@ const AdminState = (props) => {
 
         });
         const json = await response.json();
-        console.log(json)
+
 
         const newJobs = data.filter((job) => { return job._id !== id })
         setData(newJobs)
@@ -97,7 +97,7 @@ const AdminState = (props) => {
 
         });
         const json = await response.json();
-        console.log(json)
+
 
         const newUsers = data.filter((job) => { return job._id !== id })
         setData(newUsers)

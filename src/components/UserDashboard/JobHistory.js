@@ -141,7 +141,7 @@ const JobHistory = (props) => {
                 [applyJob].map((detail) => {
                   return (
                     <HistoryCard key={detail._id} details={detail.appliedJob} />
-                    //  console.log(detail.appliedJob.title) 
+
                   )
                 })}
 

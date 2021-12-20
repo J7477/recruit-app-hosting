@@ -23,7 +23,7 @@ const UserDetailState = (props) => {
     });
     const json = await response.json();
 
-    console.log(json)
+    ole.log(json)
     setUserData(json)
   }
 

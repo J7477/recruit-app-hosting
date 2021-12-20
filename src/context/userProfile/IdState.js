@@ -61,7 +61,7 @@ const IdState = (props) => {
       body: JSON.stringify({ ten, twelve, graduation, postgraduation })
     });
     const json = await response.json();
-    console.log(json)
+
 
 
     //logic for editing

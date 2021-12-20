@@ -44,7 +44,7 @@ const EmpSignup = (props) => {
 
     const json = await response.json();
 
-    console.log(json)
+
 
     if (json.success) {
       //save auth token and redirect

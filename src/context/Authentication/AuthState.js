@@ -32,7 +32,7 @@ const AuthState = (props) => {
                 username: json.username,
                 state: true
             })
-            console.log(json)
+
             navigate('/profile')
         }
     }
@@ -50,7 +50,7 @@ const AuthState = (props) => {
 
         const json = await response.json();
 
-        console.log(json)
+
 
         if (json.success) {
             localStorage.setItem('empAuthCoin', json.empAuthCoin)
@@ -58,7 +58,7 @@ const AuthState = (props) => {
                 username: json.companyemail,
                 state: true
             })
-            console.log(json.success)
+
             navigate('/empProfile')
         }
     };
