@@ -64,9 +64,35 @@ const AuthState = (props) => {
     };
 
 
+    const employerSignup = async (companyname, password, address, companyphone, companyemail) => {
+
+
+        const response = await fetch(`${host}/api/employerAuth/createempuser`, {
+
+            method: 'POST',
+
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ companyname, password, address, companyphone, companyemail })
+        });
+
+        const json = await response.json();
+
+        if (json.success) {
+            localStorage.setItem('empAuthCoin', json.empAuthCoin)
+            setAuth({
+                username: json.companyemail,
+                state: true
+            })
+
+            navigate('/empProfile')
+        }
+    }
+
     return (
         // eslint-disable-next-line
-        <AuthContext.Provider value={{ auth, userAuth, employerAuth }}>
+        <AuthContext.Provider value={{ auth, userAuth, employerAuth, employerSignup }}>
             {props.children}
         </AuthContext.Provider>
     )

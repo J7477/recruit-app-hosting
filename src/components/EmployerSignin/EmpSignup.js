@@ -9,18 +9,19 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useNavigate } from 'react-router-dom'
+import AuthContext from '../../context/Authentication/AuthContext';
 
 
 
 
 const EmpSignup = (props) => {
 
-
+  const context = useContext(AuthContext)
+  const { employerSignup } = context
 
   const [credentials, setCredentials] = useState({ companyname: "", password: "", address: "", companyphone: "", companyemail: "" })
 
-  let navigate = useNavigate();
+
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
@@ -28,31 +29,7 @@ const EmpSignup = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    //API call
-    const { companyname, password, address, companyphone, companyemail } = credentials;
-
-    const response = await fetch(`https://projectsemapp.herokuapp.com/api/employerAuth/createempuser`, {
-
-      method: 'POST',
-
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ companyname, password, address, companyphone, companyemail })
-    });
-
-    const json = await response.json();
-
-
-
-    if (json.success) {
-      //save auth token and redirect
-      localStorage.setItem('empAuthCoin', json.empAuthCoin)
-      navigate('/')
-    } else {
-      alert("Incorrect credentials")
-    }
+    employerSignup(credentials.companyname, credentials.password, credentials.address, credentials.companyphone, credentials.companyemail)
   };
 
   return (
