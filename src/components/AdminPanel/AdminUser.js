@@ -33,7 +33,7 @@ const AdminUser = (props) => {
             <Divider />
             <List>
                 <ListItem>
-                    <Button color="inherit" component={Link} to={"/admin"}>Employers</Button>
+                    <Button color="inherit" component={Link} to={"/adminpage"}>Employers</Button>
                 </ListItem>
                 <ListItem>
                     <Button color="inherit" component={Link} to={"/adminjobs"}>Jobs</Button>
