@@ -15,8 +15,8 @@ const Profile = () => {
   const { details, getDetails, editDetail } = context;
 
   const detailContext = useContext(UserDetailContext)
-  const { userData, getData } = detailContext
-
+  const {userData, getData} = detailContext
+console.log(userData)
 
 
   useEffect(() => {
@@ -116,13 +116,13 @@ const Profile = () => {
 
 
       {
-        details.slice(0, 1).map((detail) => {
+        details.slice(0,1).map((detail) => {
           return <ProfileCard key={detail._id} updateDetail={updateDetail} details={detail}></ProfileCard>;
         })
       }
       {
         [userData].map((userDetail) => {
-          return <UserProfileCard key={userDetail._id} userDetails={userDetail}></UserProfileCard>
+          return <UserProfileCard key={userDetail._id} userDetails={userDetail}></UserProfileCard> 
         })
       }
     </>

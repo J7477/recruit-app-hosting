@@ -50,9 +50,9 @@ const JobHistory = (props) => {
         <ListItem>
           <Button color="inherit" component={Link} to={"/jobHistory"}>History of Applied Jobs</Button>
         </ListItem>
-        {/* <ListItem>
-          <Button color="inherit" component={Link} to={"/profile"}>Profile</Button>
-        </ListItem> */}
+        <ListItem button  >
+          <Button color="inherit" component={Link} to={"/complaint"}>Complaints</Button>
+        </ListItem>
         <ListItem>
           <Button color="inherit" component={Link} to={"/"}>Back to Home Page</Button>
         </ListItem>
@@ -141,7 +141,7 @@ const JobHistory = (props) => {
                 [applyJob].map((detail) => {
                   return (
                     <HistoryCard key={detail._id} details={detail.appliedJob} />
-
+                    //  console.log(detail.appliedJob.title) 
                   )
                 })}
 

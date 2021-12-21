@@ -46,9 +46,9 @@ const ShowProfile = (props) => {
         <ListItem>
           <Button color="inherit" component={Link} to={"/jobHistory"}>History of Applied Jobs</Button>
         </ListItem>
-        {/* <ListItem>
-              <Button color="inherit" component={Link} to={"/profile"}>Profile</Button>
-          </ListItem> */}
+        <ListItem button  >
+          <Button color="inherit" component={Link} to={"/complaint"}>Complaints</Button>
+        </ListItem>
         <ListItem>
           <Button color="inherit" component={Link} to={"/"}>Back to Home Page</Button>
         </ListItem>

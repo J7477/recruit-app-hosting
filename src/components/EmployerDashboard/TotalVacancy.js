@@ -39,22 +39,22 @@ const TotalVacancy = (props) => {
       <Divider />
       <List>
 
-        <ListItem>
+        <ListItem button  >
           <Button color="inherit" component={Link} to={"/empProfile"}>Profile</Button>
         </ListItem>
-        <ListItem>
+        <ListItem button  >
           <Button color="inherit" component={Link} to={"/postVacancy"}>Post Vacancy</Button>
         </ListItem>
-        {/* <ListItem>
-              <Button color="inherit" component={Link} to={"/empProfile"}>Profile</Button>
-          </ListItem> */}
       </List>
       <Divider />
       <List >
-        <ListItem>
+        <ListItem button  >
           <Button color="inherit" component={Link} to={"/totalVacancy"}>Total Vacancies</Button>
         </ListItem>
-        <ListItem>
+        <ListItem button  >
+          <Button color="inherit" component={Link} to={"/empcomplaint"}>Complaints</Button>
+        </ListItem>
+        <ListItem button  >
           <Button color="inherit" component={Link} to={"/"}>Back to Home Page</Button>
         </ListItem>
 

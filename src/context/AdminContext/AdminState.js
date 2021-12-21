@@ -13,7 +13,7 @@ const AdminState = (props) => {
     const [data, setData] = useState(dataInitial)
 
     // get all data
-    const getData = async () => {
+    const getEmployerData = async () => {
         //API call   
         const response = await fetch(`${host}/api/AdminPanel/employers`, {
             method: 'GET',
@@ -105,7 +105,7 @@ const AdminState = (props) => {
 
     return (
         // eslint-disable-next-line
-        <AdminContext.Provider value={{ data, getData, deleteEmployer, getJobs, deleteJob, getUsers, deleteUser }}>
+        <AdminContext.Provider value={{ data, getEmployerData, deleteEmployer, getJobs, deleteJob, getUsers, deleteUser }}>
             {props.children}
         </AdminContext.Provider>
     )
