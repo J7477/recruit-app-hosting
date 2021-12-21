@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,18 +9,19 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useNavigate } from 'react-router-dom'
+import AuthContext from '../../context/Authentication/AuthContext';
 
 
 
 
 const UserSignup = (props) => {
 
+  const userContext = useContext(AuthContext)
 
+  const { userSignup } = userContext;
 
   const [credentials, setCredentials] = useState({ username: "", password: "", name: "", phone: "" })
 
-  let navigate = useNavigate();
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
@@ -29,31 +30,7 @@ const UserSignup = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    //API call
-    const { username, password, name, phone } = credentials;
-
-    const response = await fetch(`https://projectsemapp.herokuapp.com/api/studentAuth/createuser`, {
-
-      method: 'POST',
-
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password, name, phone })
-    });
-
-    const json = await response.json();
-
-
-
-    if (json.success) {
-      //save auth token and redirect
-      localStorage.setItem('token', json.stuAuthToken)
-      navigate('/')
-
-    } else {
-      alert("Incorrect credentials")
-    }
+    userSignup(credentials.username, credentials.password, credentials.name, credentials.phone)
   };
 
   return (

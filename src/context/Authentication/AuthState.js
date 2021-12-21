@@ -90,9 +90,35 @@ const AuthState = (props) => {
         }
     }
 
+
+
+    const userSignup = async (username, password, name, phone) => {
+        const response = await fetch(`https://projectsemapp.herokuapp.com/api/studentAuth/createuser`, {
+
+            method: 'POST',
+
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password, name, phone })
+        });
+
+        const json = await response.json();
+
+        if (json.success) {
+            localStorage.setItem('token', json.stuAuthToken)
+            setAuth({
+                username: json.username,
+                state: true
+            })
+
+            navigate('/profile')
+        }
+    }
+
     return (
         // eslint-disable-next-line
-        <AuthContext.Provider value={{ auth, userAuth, employerAuth, employerSignup }}>
+        <AuthContext.Provider value={{ auth, userAuth, employerAuth, employerSignup, userSignup }}>
             {props.children}
         </AuthContext.Provider>
     )
