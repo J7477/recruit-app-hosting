@@ -46,6 +46,7 @@ const Complaint = (props) => {
 
 
         setJob({ title: '', description: '', email: '' })
+        alert('Email sent')
     }
 
     const onChange = (e) => {
