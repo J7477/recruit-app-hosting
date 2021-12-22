@@ -33,6 +33,7 @@ import AdminSignin from './components/AdminPanel/AdminSignin';
 import AuthState from './context/Authentication/AuthState';
 import Complaint from './components/UserDashboard/Complaint'
 import EmpComplaint from './components/EmployerDashboard/EmpComplaint';
+import NotFound from './NotFound';
 
 
 // const theme = createTheme({
@@ -80,6 +81,7 @@ function App(props) {
                       <Route exact path='/adminusers' element={<AdminUser />} />
                       <Route exact path='/complaint' element={<Complaint />} />
                       <Route exact path='/empcomplaint' element={<EmpComplaint />} />
+                      <Route exact path='*' element={<NotFound />} />
 
                     </Routes>
                   </AuthState>

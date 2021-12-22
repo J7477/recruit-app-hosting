@@ -15,6 +15,7 @@ const Cards = () => {
   let { id } = useParams();
 
   const [post, setPost] = useState({})
+  const [emp, setEmp] = useState({})
 
 
 
@@ -22,7 +23,7 @@ const Cards = () => {
     async function fetchData() {
       try {
         //API call   
-        const response = await fetch(`https://projectsemapp.herokuapp.com/api/jobListing/post/${id}`, {
+        const response = await fetch(`https://projectsemapp.herokuapp.com/api/jobListing/applyJob/${id}`, {
           method: 'GET',
 
           headers: {
@@ -30,7 +31,9 @@ const Cards = () => {
           },
         });
         const json = await response.json();
+        console.log(json)
         setPost(json.appliedJob)
+        setEmp(json.emp)
 
       } catch (e) {
         console.error(e);
@@ -60,21 +63,38 @@ const Cards = () => {
         <Card sx={{ maxWidth: 275 }, { marginTop: 10 }}>
           <CardContent>
             <Typography sx={{ fontSize: 14 }} color="text.primary" gutterBottom>
-              {post.title}
+              Job Title:- {post.title}
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.primary">
-              {post.description}
+              Description:- {post.description}
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.primary">
-              {post.salary}
+              Salary:- {post.salary}
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.primary">
-              {post.opening}
+              Openings:- {post.opening}
             </Typography>
           </CardContent>
           <CardActions>
             <Button size="small" onClick={applyNow} >Apply Now</Button>
           </CardActions>
+        </Card>
+      </Grid>
+
+      <Grid>
+        {/* eslint-disable-next-line */}
+        <Card sx={{ maxWidth: 275 }, { marginTop: 10 }}>
+          <CardContent>
+            <Typography sx={{ fontSize: 14 }} color="text.primary" gutterBottom>
+              Company Name:- {emp.companyname}
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color="text.primary">
+              Email:- {emp.companyemail}
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color="text.primary">
+              Phone:- {emp.companyphone}
+            </Typography>
+          </CardContent>
         </Card>
       </Grid>
     </>
