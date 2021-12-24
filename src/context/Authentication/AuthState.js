@@ -7,6 +7,7 @@ const AuthState = (props) => {
     let navigate = useNavigate()
 
     const host = "https://projectsemapp.herokuapp.com"
+    const localHost = "http://localhost:5000"
 
 
     const [auth, setAuth] = useState({ username: '', state: false })
@@ -15,7 +16,7 @@ const AuthState = (props) => {
     const userAuth = async (username, password) => {
 
         //API call
-        const response = await fetch(`${host}/api/studentAuth/login`, {
+        const response = await fetch(`${localHost}/api/studentAuth/login`, {
             method: 'POST',
 
             headers: {
@@ -93,7 +94,7 @@ const AuthState = (props) => {
 
 
     const userSignup = async (username, password, name, phone) => {
-        const response = await fetch(`https://projectsemapp.herokuapp.com/api/studentAuth/createuser`, {
+        const response = await fetch(`${localHost}/api/studentAuth/createuser`, {
 
             method: 'POST',
 
@@ -105,14 +106,18 @@ const AuthState = (props) => {
 
         const json = await response.json();
 
-        if (json.success) {
-            localStorage.setItem('token', json.stuAuthToken)
-            setAuth({
-                username: json.username,
-                state: true
-            })
+        // if (json.success) {
+        //     localStorage.setItem('token', json.stuAuthToken)
+        //     setAuth({
+        //         username: json.username,
+        //         state: true
+        //     })
 
-            navigate('/profile')
+        //     navigate('/profile')
+        // }
+
+        if (json.status === 'pending') {
+            navigate(`/emailsent/${json.username}`)
         }
     }
 

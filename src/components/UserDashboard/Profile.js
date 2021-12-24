@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router';
 import UserDetailContext from '../../context/UserDetail/UserDetailContext';
 import UserProfileCard from './UserProfileCard';
+// import { Button } from '@material-ui/core';
 
 
 const Profile = () => {
@@ -15,8 +16,8 @@ const Profile = () => {
   const { details, getDetails, editDetail } = context;
 
   const detailContext = useContext(UserDetailContext)
-  const {userData, getData} = detailContext
-console.log(userData)
+  const { userData, getData } = detailContext
+  console.log(userData)
 
 
   useEffect(() => {
@@ -116,15 +117,23 @@ console.log(userData)
 
 
       {
-        details.slice(0,1).map((detail) => {
+        details.slice(0, 1).map((detail) => {
           return <ProfileCard key={detail._id} updateDetail={updateDetail} details={detail}></ProfileCard>;
         })
       }
       {
         [userData].map((userDetail) => {
-          return <UserProfileCard key={userDetail._id} userDetails={userDetail}></UserProfileCard> 
+          return <UserProfileCard key={userDetail._id} userDetails={userDetail}></UserProfileCard>
         })
       }
+      {/* <Button
+        variant='outlined'
+        color='secondary'
+        style={{ margin: 10 }}
+        onClick={() => { navigate('/changepassword') }}
+      >
+        Change Password
+      </Button> */}
     </>
   )
 }
