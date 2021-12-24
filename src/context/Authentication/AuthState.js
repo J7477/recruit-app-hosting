@@ -7,7 +7,7 @@ const AuthState = (props) => {
     let navigate = useNavigate()
 
     const host = "https://projectsemapp.herokuapp.com"
-    const localHost = "http://localhost:5000"
+    // const localHost = "http://localhost:5000"
 
 
     const [auth, setAuth] = useState({ username: '', state: false })
@@ -16,7 +16,7 @@ const AuthState = (props) => {
     const userAuth = async (username, password) => {
 
         //API call
-        const response = await fetch(`${localHost}/api/studentAuth/login`, {
+        const response = await fetch(`${host}/api/studentAuth/login`, {
             method: 'POST',
 
             headers: {
@@ -94,7 +94,7 @@ const AuthState = (props) => {
 
 
     const userSignup = async (username, password, name, phone) => {
-        const response = await fetch(`${localHost}/api/studentAuth/createuser`, {
+        const response = await fetch(`${host}/api/studentAuth/createuser`, {
 
             method: 'POST',
 
