@@ -2,23 +2,21 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import jobContext from '../../context/jobs/JobContext'
 import JobsCard from './JobsCard';
 import TextField from '@mui/material/TextField';
-import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router';
 
 
 const Jobs = () => {
 
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const context = useContext(jobContext)
   // eslint-disable-next-line
   const { jobs, getJobs, editJob } = context;
 
   useEffect(() => {
-    if (localStorage.getItem('empAuthCoin')) {
-      getJobs()
-    } else {
-      navigate('/empSignin')
-    }
+
+    getJobs()
+
     //eslint-disable-next-line
   }, [])
 

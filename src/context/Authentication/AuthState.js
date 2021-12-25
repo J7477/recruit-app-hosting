@@ -65,8 +65,8 @@ const AuthState = (props) => {
     };
 
 
-    const employerSignup = async (companyname, password, address, companyphone, companyemail) => {
-
+    const employerSignup = async (companyname, companyemail, companyphone, password, address) => {
+        console.log(companyname, password, address, companyphone, companyemail)
 
         const response = await fetch(`${host}/api/employerAuth/createempuser`, {
 
@@ -75,7 +75,8 @@ const AuthState = (props) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ companyname, password, address, companyphone, companyemail })
+            body: JSON.stringify({ companyemail, password, companyphone, companyname, address })
+
         });
 
         const json = await response.json();
@@ -94,7 +95,7 @@ const AuthState = (props) => {
             navigate(`/empemailsent/${json.username}`)
         }
         else if (json.error === undefined) {
-            alert('Enter a Valid Phone Number')
+            alert('Validation error')
         }
         else if (!json.success) {
             alert(json.error)

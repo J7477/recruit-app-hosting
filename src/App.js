@@ -1,4 +1,5 @@
 import React from 'react'
+import './App.css'
 import Home from './components/Home/Home';
 // import { ThemeProvider, createTheme } from '@material-ui/core/styles'
 // import { green } from "@material-ui/core/colors";

@@ -42,8 +42,8 @@ const UserSignup = (props) => {
     username: Yup.string().email("Please Enter a valid Email").required("Please Enter an Email"),
     phone: Yup.string()
       .required("required")
-      .min(10, "to short")
-      .max(10, "to long"),
+      .min(10, "Phone Number is Shorter Than 10 Digits")
+      .max(10, "Phone Number is Longer Than 10 Digits"),
     password: Yup.string().min(5, 'Password Must Have More Than 5 Characters').required('Please Enter Your Password')
   })
 
