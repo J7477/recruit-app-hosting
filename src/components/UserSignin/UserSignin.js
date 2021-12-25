@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,7 +10,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import AuthContext from '../../context/Authentication/AuthContext';
-
+import { Formik, Field, Form, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
 
 const UserSignIn = (props) => {
 
@@ -20,18 +21,22 @@ const UserSignIn = (props) => {
 
   const { userAuth } = userContext;
 
-  const [credentials, setCredentials] = useState({ username: "", password: "" })
 
-
-  const onChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value })
+  const initialValues = {
+    username: "",
+    password: "",
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    userAuth(credentials.username, credentials.password)
+
+  const onSubmit = (values) => {
+
+    userAuth(values.username, values.password)
   }
 
+  const validationSchema = Yup.object().shape({
+    username: Yup.string().email("Please Enter a valid Email").required("Please Enter an Email"),
+    password: Yup.string().min(5, 'Password Must Have More Than 5 Characters').required('Please Enter Your Password')
+  })
 
 
   return (
@@ -54,51 +59,53 @@ const UserSignIn = (props) => {
 
 
 
-        <form onSubmit={handleSubmit}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            value={credentials.username}
-            id="email"
-            label="Email Address"
-            name="username"
-            autoComplete="email"
-            autoFocus
-            onChange={onChange}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            value={credentials.password}
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onChange={onChange}
-          />
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+          {(props) => (
+            <Form>
+              <Field as={TextField}
+                margin="normal"
+                // required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="username"
+                autoComplete="email"
+                autoFocus
+                helperText={<ErrorMessage name='username' />}
+              />
+              <Field as={TextField}
+                margin="normal"
+                // required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                helperText={<ErrorMessage name='password' />}
+              />
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign In
-          </Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
 
 
-          <Grid container>
-            <Grid item>
-              <Button color="primary" component={Link} to={"/userSignup"}>Don't have an account? Sign up</Button>
-            </Grid>
-            <Grid>
-              <Button color="primary" component={Link} to={"/"}>Home Page</Button>
-            </Grid>
-          </Grid>
-        </form>
+              <Grid container>
+                <Grid item>
+                  <Button color="primary" component={Link} to={"/userSignup"}>Don't have an account? Sign up</Button>
+                </Grid>
+                <Grid>
+                  <Button color="primary" component={Link} to={"/"}>Home Page</Button>
+                </Grid>
+              </Grid>
+            </Form>
+          )}
+        </Formik>
       </Box>
 
     </Container>

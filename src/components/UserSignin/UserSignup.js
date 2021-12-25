@@ -20,22 +20,13 @@ const UserSignup = (props) => {
 
   const { userSignup } = userContext;
 
-  // const [values, setCredentials] = useState({ username: "", password: "", name: "", phone: "" })
 
 
-  // const onChange = (e) => {
-  //   setCredentials({ ...values, [e.target.name]: e.target.value })
-  // }
+  const onSubmit = async (values) => {
 
-  const onSubmit = async (values, props) => {
-    // event.preventDefault();
-    console.log(values)
-    console.log(props)
+
     userSignup(values.username, values.password, values.name, values.phone)
-    // setTimeout(() => {
-    //   props.resetForm()
 
-    // }, 2000)
   };
 
   const initialValues = {
@@ -44,16 +35,7 @@ const UserSignup = (props) => {
     name: "",
     phone: ""
   }
-  // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
-
-  // phone: Yup.string()
-  //   .required("required")
-  //   .matches(phoneRegExp, 'Phone number is not valid')
-  //   .min(10, "to short")
-  //   .max(10, "to long"),
-
-  // phone: Yup.number().typeError('Enter valid phone number').required('Please Enter Your Phone Number'),
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().min(2, "Name to short").required('Please Enter Your Name'),

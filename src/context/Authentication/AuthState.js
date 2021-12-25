@@ -80,14 +80,24 @@ const AuthState = (props) => {
 
         const json = await response.json();
 
-        if (json.success) {
-            localStorage.setItem('empAuthCoin', json.empAuthCoin)
-            setAuth({
-                username: json.companyemail,
-                state: true
-            })
+        // if (json.success) {
+        //     localStorage.setItem('empAuthCoin', json.empAuthCoin)
+        //     setAuth({
+        //         username: json.companyemail,
+        //         state: true
+        //     })
 
-            navigate('/empProfile')
+        //     navigate('/empProfile')
+        // }
+
+        if (json.status === 'pending') {
+            navigate(`/empemailsent/${json.username}`)
+        }
+        else if (json.error === undefined) {
+            alert('Enter a Valid Phone Number')
+        }
+        else if (!json.success) {
+            alert(json.error)
         }
     }
 
@@ -115,7 +125,7 @@ const AuthState = (props) => {
 
         //     navigate('/profile')
         // }
-        console.log(json)
+        // console.log(json)
         if (json.status === 'pending') {
             navigate(`/emailsent/${json.username}`)
         }

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,7 +10,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import AuthContext from '../../context/Authentication/AuthContext';
-
+import { Formik, Field, Form, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
 
 const EmpSignin = (props) => {
 
@@ -18,18 +19,23 @@ const EmpSignin = (props) => {
   const context = useContext(AuthContext)
   const { employerAuth } = context
 
-  const [credentials, setCredentials] = useState({ companyemail: "", password: "" })
 
-
-
-  const onChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value })
+  const initialValues = {
+    companyemail: "",
+    password: "",
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    employerAuth(credentials.companyemail, credentials.password)
+
+  const onSubmit = (values) => {
+
+    employerAuth(values.companyemail, values.password)
   }
+
+  const validationSchema = Yup.object().shape({
+    companyemail: Yup.string().email("Please Enter a valid Email").required("Please Enter an Email"),
+    password: Yup.string().min(5, 'Password Must Have More Than 5 Characters').required('Please Enter Your Password')
+  })
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -51,51 +57,51 @@ const EmpSignin = (props) => {
 
 
 
-        <form onSubmit={handleSubmit}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            value={credentials.companyemail}
-            id="companyemail"
-            label="Email Address"
-            name="companyemail"
-            autoComplete="email"
-            autoFocus
-            onChange={onChange}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            value={credentials.password}
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onChange={onChange}
-          />
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+          {(props) => (
+            <Form>
+              <Field as={TextField}
+                margin="normal"
+                fullWidth
+                id="companyemail"
+                label="Email Address"
+                name="companyemail"
+                autoComplete="email"
+                autoFocus
+                helperText={<ErrorMessage name='companyemail' />}
+              />
+              <Field as={TextField}
+                margin="normal"
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                helperText={<ErrorMessage name='password' />}
+              />
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign In
-          </Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
 
 
-          <Grid container>
-            <Grid item>
-              <Button color="primary" component={Link} to={"/empSignup"}>Don't have an account? Sign up</Button>
-            </Grid>
-            <Grid>
-              <Button color="primary" component={Link} to={"/"}>Home Page</Button>
-            </Grid>
-          </Grid>
-        </form>
+              <Grid container>
+                <Grid item>
+                  <Button color="primary" component={Link} to={"/empSignup"}>Don't have an account? Sign up</Button>
+                </Grid>
+                <Grid>
+                  <Button color="primary" component={Link} to={"/"}>Home Page</Button>
+                </Grid>
+              </Grid>
+            </Form>
+          )}
+        </Formik>
       </Box>
 
     </Container>
