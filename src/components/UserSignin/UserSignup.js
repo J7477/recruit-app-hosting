@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,8 +10,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import AuthContext from '../../context/Authentication/AuthContext';
-
-
+import { Formik, Field, Form, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
 
 
 const UserSignup = (props) => {
@@ -20,18 +20,52 @@ const UserSignup = (props) => {
 
   const { userSignup } = userContext;
 
-  const [credentials, setCredentials] = useState({ username: "", password: "", name: "", phone: "" })
+  // const [values, setCredentials] = useState({ username: "", password: "", name: "", phone: "" })
 
 
-  const onChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value })
-  }
+  // const onChange = (e) => {
+  //   setCredentials({ ...values, [e.target.name]: e.target.value })
+  // }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const onSubmit = async (values, props) => {
+    // event.preventDefault();
+    console.log(values)
+    console.log(props)
+    userSignup(values.username, values.password, values.name, values.phone)
+    // setTimeout(() => {
+    //   props.resetForm()
 
-    userSignup(credentials.username, credentials.password, credentials.name, credentials.phone)
+    // }, 2000)
   };
+
+  const initialValues = {
+    username: "",
+    password: "",
+    name: "",
+    phone: ""
+  }
+  // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
+
+  // phone: Yup.string()
+  //   .required("required")
+  //   .matches(phoneRegExp, 'Phone number is not valid')
+  //   .min(10, "to short")
+  //   .max(10, "to long"),
+
+  // phone: Yup.number().typeError('Enter valid phone number').required('Please Enter Your Phone Number'),
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().min(2, "Name to short").required('Please Enter Your Name'),
+    username: Yup.string().email("Please Enter a valid Email").required("Please Enter an Email"),
+    phone: Yup.string()
+      .required("required")
+      .min(10, "to short")
+      .max(10, "to long"),
+    password: Yup.string().min(5, 'Password Must Have More Than 5 Characters').required('Please Enter Your Password')
+  })
+
+
 
   return (
 
@@ -53,75 +87,83 @@ const UserSignup = (props) => {
         </Typography>
 
 
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+          {(props) => (
+            <Form>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
 
 
+                  <Field as={TextField}
+                    autoComplete="given-name"
+                    name="name"
+                    // required
+                    fullWidth
+                    id="name"
+                    label="Name"
+                    autoFocus
+                    helperText={<ErrorMessage name='name' />}
+                  // onChange={onChange}
+                  />
+                </Grid>
 
-        <form onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
+                  <Field as={TextField}
+                    // required
+                    fullWidth
+                    id="username"
+                    label="Email Address"
+                    name="username"
+                    helperText={<ErrorMessage name='username' />}
+                  // onChange={onChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Field as={TextField}
+                    // required
+                    fullWidth
+                    id="phone"
+                    label="Phone Number"
+                    name="phone"
+                    helperText={<ErrorMessage name='phone' />}
+                  // onChange={onChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Field as={TextField}
+                    // required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    helperText={<ErrorMessage name='password' />}
+                  // onChange={onChange}
+                  />
+                </Grid>
 
 
-              <TextField
-                autoComplete="given-name"
-                name="name"
-                required
+              </Grid>
+              <Button
+                type="submit"
                 fullWidth
-                id="name"
-                label="Name"
-                autoFocus
-                onChange={onChange}
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="username"
-                label="Email Address"
-                name="username"
-                onChange={onChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="phone"
-                label="Phone Number"
-                name="phone"
-                onChange={onChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                onChange={onChange}
-              />
-            </Grid>
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign Up
+              </Button>
+              <Grid container justifyContent="flex-end">
+                <Grid item>
+                  <Button color="primary" component={Link} to={"/userSignin"}>Already have an account? Sign in</Button>
+                  <Button color="primary" component={Link} to={"/"}>Back to Home Page</Button>
+                </Grid>
+              </Grid>
+            </Form>
+          )}
+        </Formik>
 
 
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign Up
-          </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Button color="primary" component={Link} to={"/userSignin"}>Already have an account? Sign in</Button>
-              <Button color="primary" component={Link} to={"/"}>Back to Home Page</Button>
-            </Grid>
-          </Grid>
-        </form>
+
       </Box>
     </Container>
   )

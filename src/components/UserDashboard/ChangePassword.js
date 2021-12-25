@@ -4,16 +4,20 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@material-ui/core';
 import Stack from '@mui/material/Stack';
 import Axios from 'axios'
+import { useParams } from 'react-router-dom'
 
 const ChangePassword = () => {
 
     const [oldPassword, setOldPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
 
+    const host = "https://projectsemapp.herokuapp.com"
 
+    const { id } = useParams()
+    // console.log(id)
     const changePassword = () => {
-        Axios.put('http://localhost:5000/api/studentAuth/updateuserpassword', {
-            oldassword: oldPassword,
+        Axios.put(`${host}/api/studentAuth/updateuserpassword/${id}`, {
+            oldpassword: oldPassword,
             newpassword: newPassword
         }, {
             headers: {
@@ -24,6 +28,10 @@ const ChangePassword = () => {
             if (response.data.error) {
                 alert(response.data.error)
             }
+            if (response.data) {
+                alert('Password changed')
+            }
+            // console.log(response)
         })
     }
     return (
