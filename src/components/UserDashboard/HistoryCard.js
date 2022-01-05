@@ -8,39 +8,51 @@ import Typography from '@mui/material/Typography';
 
 const HistoryCard = (props) => {
 
-  
-    const { details } = props
+
+  const { details } = props
 
 
   return (
 
     <>
-    
+
 
       {/* eslint-disable-next-line */}
       <Card sx={{ width: 400 }, { marginTop: 5 }} >
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {details.title}
+            Title: {details.job.title}
           </Typography>
 
           <Typography variant="body2">
-            {details.description}
+            Description: {details.job.description}
           </Typography>
 
           <Typography variant="body2">
-            {details.salary}
+            Salary: {details.job.salary}
           </Typography>
 
           <Typography variant="body2">
-            {details.opening}
-          </Typography> 
-         {/* <Button color='primary'>View</Button> */}
-
-          
-
+            Opening: {details.job.opening}
+          </Typography>
         </CardContent>
 
+
+        <CardContent>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            Company Name: {details.emp.companyname}
+          </Typography>
+
+          <Typography variant="body2">
+            Company Email: {details.emp.companyemail}
+          </Typography>
+
+          <Typography variant="body2">
+            Company Phone: {details.emp.companyphone}
+          </Typography>
+
+
+        </CardContent>
       </Card>
 
 

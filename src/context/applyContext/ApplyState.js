@@ -4,6 +4,7 @@ import ApplyContext from './ApplyContext'
 
 const ApplyState = (props) => {
   const host = "https://projectsemapp.herokuapp.com"
+  // const localhost = "http://localhost:5000"
 
   const appliedInitial = []
 
@@ -11,8 +12,8 @@ const ApplyState = (props) => {
 
   // get job details from applied job id
   const getAppliedJob = async (id) => {
-    //API call   
-    const response = await fetch(`${host}/api/jobListing/applyJob/${id}`, {
+    //API call   (61d58c78042c3f2ecdd0ab77)
+    const response = await fetch(`${host}/api/ApplyJobs/gets/${id}`, {
       method: 'GET',
 
       headers: {
@@ -20,6 +21,7 @@ const ApplyState = (props) => {
       },
     });
     const json = await response.json();
+    console.log(json)
     setApplyJob(json)
 
   }

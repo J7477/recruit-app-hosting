@@ -23,6 +23,8 @@ const JobHistory = (props) => {
   const contextApply = useContext(ApplyContext)
   const { applyJob } = contextApply
 
+
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -140,7 +142,7 @@ const JobHistory = (props) => {
               {applyJob.length === 0 ? 'No jobs applied' :
                 [applyJob].map((detail) => {
                   return (
-                    <HistoryCard key={detail._id} details={detail.appliedJob} />
+                    <HistoryCard details={detail} />
                     //  console.log(detail.appliedJob.title) 
                   )
                 })}
